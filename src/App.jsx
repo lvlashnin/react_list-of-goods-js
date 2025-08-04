@@ -28,18 +28,15 @@ export const App = () => {
   const getReversed = arr => [...arr].reverse();
 
   const sortGoods = par => {
-    const goodsCopy = [...goodsFromServer];
-
     switch (par) {
       case 'sort_alphabetically': {
-        let sorted = goodsCopy.sort((a, b) => a.localeCompare(b));
+        let sorted = [...goodsList].sort((a, b) => a.localeCompare(b));
 
         if (buttonsState.reverse) {
           sorted = getReversed(sorted);
         }
 
         setGoodsList(sorted);
-
         setButtonsState({
           ...buttonsState,
           sort_alphabetically: true,
@@ -50,14 +47,13 @@ export const App = () => {
       }
 
       case 'sort_by_length': {
-        let sorted = goodsCopy.sort((a, b) => a.length - b.length);
+        let sorted = [...goodsList].sort((a, b) => a.length - b.length);
 
         if (buttonsState.reverse) {
           sorted = getReversed(sorted);
         }
 
         setGoodsList(sorted);
-
         setButtonsState({
           ...buttonsState,
           sort_by_length: true,
@@ -71,27 +67,22 @@ export const App = () => {
         const reversed = getReversed(goodsList);
 
         setGoodsList(reversed);
-
         setButtonsState({
           ...buttonsState,
           reverse: !buttonsState.reverse,
         });
-
         break;
       }
 
       case 'reset': {
         setGoodsList([...goodsFromServer]);
         setButtonsState({ ...buttons });
-
         break;
       }
 
       default:
         return 0;
     }
-
-    return 0;
   };
 
   return (
