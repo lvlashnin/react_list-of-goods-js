@@ -75,7 +75,6 @@ export const App = () => {
         setButtonsState({
           ...buttonsState,
           reverse: !buttonsState.reverse,
-          reset: !buttonsState.reset,
         });
 
         break;
